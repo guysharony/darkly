@@ -52,3 +52,6 @@ for password in passwords:
 		print(response)
 		return
 ```
+
+### How to fix
+It is important for the service to compel users to select a strong password, safeguard the server from sending requests beyond the website by employing tokens, and implement measures to temporarily block IP addresses after a certain number of authentication attempts.
