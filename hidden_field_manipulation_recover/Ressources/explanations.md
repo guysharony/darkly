@@ -6,6 +6,7 @@ Hidden field manipulation involves manipulating hidden fields in HTML to submit 
 ### Procedure
 By inspecting the recovery page, we observed a hidden field in the form request containing the email information. By altering the input value from the email address of the webmaster ``webmaster@borntosec.com`` to the email address of the admin ``admin@borntosec.com``, we can redirect the password recovery email to the admin instead of the webmaster.
 
+### Program
 To automate this process, we developed a Python program that sends a password recovery request using the admin's email, ``admin@borntosec.com``. This request is initiated by calling the ``try_recover`` function.
 ```python
 def try_recover(mail: str):
