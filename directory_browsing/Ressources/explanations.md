@@ -4,7 +4,7 @@
 Directory browsing involves trying to access and read files that are stored in directories on a web server.
 
 ### Procedure
-After reading robots.txt, we can notice that this file contains ``Disallow: /.hidden`` to notify crowlers to not read from this directory. This method, doesn't prevent us from scraping content from this directory so we are going to write a script in python that will display content from every file in that folder.
+After reading `robots.txt`, we can notice that this file contains `Disallow: /.hidden` to notify crowlers to not read from this directory. This method, doesn't prevent us from scraping content from this directory so we are going to write a script in python that will display content from every file in that folder.
 
 ### Program
 First things first, we start by writing a function that will return us the content of a file in the server.
