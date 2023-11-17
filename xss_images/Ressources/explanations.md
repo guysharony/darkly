@@ -14,6 +14,8 @@ After some research, it's found that the <object> tag encodes the received files
 
 We then transform our code into base64:
 
+```
 data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+```
 
 Flag: 928D819FC19405AE09921A2B71227BD9ABA106F9D2D37AC412E9E5A750F1506D
