@@ -1,7 +1,7 @@
 import requests
 import urllib.parse
 
-def try_authentication():
+def try_input():
     encoded_params = urllib.parse.urlencode({ 'page': 'survey' })
 
     url = 'http://192.168.56.101/?{}'.format(encoded_params)
@@ -14,7 +14,7 @@ def try_authentication():
     return response.text
 
 def main():
-    print(try_authentication())
+    print(try_input())
 
 if __name__ == "__main__":
     main()

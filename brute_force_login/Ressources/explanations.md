@@ -6,7 +6,7 @@ Brute forcing involves attempting multiple combinations of passwords for a speci
 ### Procedure
 Numerous brute force techniques exist, and our focus lies on the dictionary attack. This method involves systematically testing a list of potential passwords one by one until the correct password is successfully identified.
 
-To accomplish this, we have created a small Python program, ``brute_force.py``, which attempts to authenticate to the ``admin`` account by testing passwords from a dictionary named ``dictionary.txt``. This dictionary contains the most popular passwords used by users in 2014.
+To accomplish this, we have created a small Python program, `brute_force.py`, which attempts to authenticate to the `admin` account by testing passwords from a dictionary named `dictionary.txt`. This dictionary contains the most popular passwords used by users in 2014.
 
 ### Program
 We first starts by converting the lines of our dictionary into a list. This will allow us to successively trying each password from our list. 
@@ -21,7 +21,7 @@ def read_file(path: str):
 	return lines
 ````
 
-Then, for each password in that list, we send a request to the server with the username ``admin`` using the function ``try_authentication``. Every time we attempt an incorrect password, the server responds with a specific length, in our case, 1988 characters. By recognizing this pattern, we can determine the correctness of a password based on the length of the response. Therefore, if a response has a different number of characters than 1988, we know the password is correct.
+Then, for each password in that list, we send a request to the server with the username `admin` using the function `try_authentication`. Every time we attempt an incorrect password, the server responds with a specific length, in our case, 1988 characters. By recognizing this pattern, we can determine the correctness of a password based on the length of the response. Therefore, if a response has a different number of characters than 1988, we know the password is correct.
 ``` python
 def try_authentication(wrong_request_length: int, username: str, password: str):
   print(f"[username: {username}] [password: {password}] => ", end="", flush=True)
@@ -55,3 +55,12 @@ for password in passwords:
 
 ### How to fix
 It is important for the service to compel users to select a strong password, safeguard the server from sending requests beyond the website by employing tokens, and implement measures to temporarily block IP addresses after a certain number of authentication attempts.
+
+### Sources
+[Wikipedia - Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)
+
+[Wikipedia - List of the most common passwords](https://en.wikipedia.org/wiki/List_of_the_most_common_passwords)
+
+[OWASP - Blocking Brute Force Attacks](https://owasp.org/www-community/controls/Blocking_Brute_Force_Attacks)
+
+[OWASP - Brute Force Attack](https://owasp.org/www-community/attacks/Brute_force_attack)
