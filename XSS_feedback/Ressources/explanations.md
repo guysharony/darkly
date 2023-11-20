@@ -1,18 +1,31 @@
+# XSS feedback
 
+### Introduction
 
-### XSS feedback
+Cross-Site Scripting (XSS) is a significant security vulnerability that occurs in web applications. It involves the injection of malicious JavaScript code into web pages viewed by other users. The term "XSS" was coined to distinguish it from "CSS," or Cascading Style Sheets, to avoid confusion. The core of this vulnerability lies in the application's failure to properly handle user-supplied input, which can lead to the execution of unintended scripts in the user's browser, compromising the security of user data and interactions with the website.
 
-How to recognize an XSS vulnerability?
+### Procedure
 
-The XSS vulnerability, originally called CSS (Cross Site Scripting) but changed to avoid confusion with CSS (Cascading Style Sheets), is essentially the injection of JavaScript code into data when HTML is not disabled.
+1. **Identifying Potential XSS Points**: 
+   - Begin by identifying areas in the application where user input is accepted and displayed, such as feedback forms, comment sections, or search queries.
 
-To test if the vulnerability is exploitable, we begin by attempting to add feedback that includes HTML.
+2. **Initial Testing with HTML**: 
+   - Input HTML code as part of the feedback. Observe whether the HTML is executed or if the tags are simply displayed as plain text.
+   - In this case, it is noted that the HTML is not disabled, and the HTML tags disappear from the input, indicating that they are processed in some manner.
 
-We notice that the HTML is not disabled, and the HTML tags have disappeared.
+3. **Further Testing for Script Execution**: 
+   - Since the HTML tags vanish, it suggests that the application might be partially sanitizing the input. However, this does not rule out the possibility of XSS.
+   - To further test, attempt to insert a simple JavaScript snippet using the `<script>` tag in the feedback.
 
-The tags also vanish.
+4. **Observing Behavior and Output**:
+   - If the script runs (e.g., a JavaScript alert box appears), this confirms the presence of an XSS vulnerability.
+   - The successful generation of a flag (a response from the system indicating a successful exploit) using the "script" keyword also confirms this vulnerability.
 
+### How to Fix
 
-This feedback highlights that the XSS vulnerability arises from the improper handling of user input, specifically allowing HTML and JavaScript to be executed in the browser. The disappearance of HTML tags suggests that the application may be partially sanitizing input, but not effectively enough to prevent XSS attacks.
+Ensure all input parameters, especially those used in the `<object>` tag, are properly validated and sanitized. This includes checks for type, format, and length.
 
-The successful generation of the flag using the "script" keyword confirms the presence of this vulnerability.
+### Sources
+
+[XSS](https://www.acunetix.com/websitesecurity/cross-site-scripting/)
+[XSS - Owasp](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
