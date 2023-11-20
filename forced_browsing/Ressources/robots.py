@@ -1,14 +1,13 @@
+import sys
 import requests
-import urllib.parse
 
 
 def try_robots(path: str = ""):
-    url = f'http://192.168.56.101/.hidden{path}'
+    url = f'http://{sys.argv[1]}/.hidden{path}'
 
     response = requests.get(url)
 
     return response.text
-
 
 def filter_index(path: str = "/"):
     text = try_robots(path)
@@ -33,10 +32,13 @@ def filter_index(path: str = "/"):
                     if len(text) > 40:
                         exit()
 
-
 def main():
-    print(filter_index("/"))
+    try:
+        assert len(sys.argv) == 2, "IP address is not valid."
 
+        print(filter_index("/"))
+    except Exception as err:
+        print(f'Error: {err}')
 
 if __name__ == "__main__":
     main()

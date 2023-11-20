@@ -1,10 +1,11 @@
+import sys
 import requests
 import urllib.parse
 
 def try_recover(mail: str):
     encoded_params = urllib.parse.urlencode({ 'page': 'recover' })
 
-    url = 'http://192.168.56.2/?{}'.format(encoded_params)
+    url = f'http://{sys.argv[1]}/?{{}}'.format(encoded_params)
 
     data = { 'mail': mail, 'Submit': 'Submit' }
     headers = { 'Content-Type': "application/x-www-form-urlencoded" }
@@ -14,7 +15,12 @@ def try_recover(mail: str):
     return response.text
 
 def main():
-    print(try_recover('admin@borntosec.com'))
+    try:
+        assert len(sys.argv) == 2, "IP address is not valid."
+        
+        print(try_recover('admin@borntosec.com'))
+    except Exception as err:
+        print(f'Error: {err}')
 
 if __name__ == "__main__":
     main()
