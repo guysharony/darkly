@@ -32,5 +32,6 @@ Ensure all input parameters, especially those used in the `<object>` tag, are pr
 
 ### Sources
 
-https://www.acunetix.com/websitesecurity/cross-site-scripting/
-https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+[XSS](https://www.acunetix.com/websitesecurity/cross-site-scripting/)
+
+[XSS - Owasp](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
