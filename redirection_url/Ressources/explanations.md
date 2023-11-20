@@ -17,4 +17,4 @@ Change "facebook" by "flag" and be redirected to the flag page.
 Open redirects are mostly caused by processing unvalidated user inputs, especially URL query strings. To minimize the risk of unwanted redirects, avoid user-controllable data in URLs where possible and carefully sanitize it when it must be used.
 
 ### Source
-[Open Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
+[Open Redirect - Owasp](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
