@@ -30,3 +30,6 @@ Add a in the htaccess file a code to protect the robot.txt file and avoid indexi
 </FilesMatch>
 ```
 It's crucial to ensure that the .htpasswd file is not located in a directory that is accessible to users and to remember to delete any files containing sensitive data.
+
+### Sources
+[Robots.txt Security Risks](https://www.searchenginejournal.com/robots-txt-security-risks/289719/#close)
