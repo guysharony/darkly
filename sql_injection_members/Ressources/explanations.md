@@ -1,6 +1,10 @@
+# Search members by ID
 
+### Introduction
 
-### Search members by ID
+SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. This can allow an attacker to view data that they are not normally able to retrieve. This might include data that belongs to other users, or any other data that the application can access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application's content or behavior.
+
+### Procedure
 
 By entering an ID number, we can attempt to retrieve an initial table!
 
@@ -115,3 +119,11 @@ Surname: 5ff9d0165b4f92b14994e5c685cdce28
 ### Decrypt the password
 
 To decrypt the password, we use the MD5 Decrypt tool, converting ``5ff9d0165b4f92b14994e5c685cdce28`` to ``FortyTwo``. Following the instructions in the comment, we lower the characters to ``fortytwo``, and then encrypt it with a SHA-256 tool, resulting in ``10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5``.
+
+### How to fix
+
+We can prevent most instances of SQL injection using parameterized queries instead of string concatenation within the query. These parameterized queries are also know as "prepared statements". 
+
+### Sources
+
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html#defense-option-3-allow-list-input-validation
