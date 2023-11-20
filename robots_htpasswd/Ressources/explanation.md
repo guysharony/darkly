@@ -23,4 +23,10 @@ Converting the root's password using MD5 yields ``qwerty123@``.
 This leads to the administrator login platform at http://192.168.56.102/admin.
 
 ### How to fix
+Add a in the htaccess file a code to protect the robot.txt file and avoid indexing.
+```
+<FilesMatch "robots.txt">
+	Header set X-Robots-Tag "noindex, nofollow"
+</FilesMatch>
+```
 It's crucial to ensure that the .htpasswd file is not located in a directory that is accessible to users and to remember to delete any files containing sensitive data.
