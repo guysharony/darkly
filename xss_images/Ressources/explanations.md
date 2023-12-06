@@ -28,7 +28,7 @@ The `<object>` data tag in HTML is a versatile element used to embed different t
 
 ### How to Fix the Vulnerability
 
-Ensure all input parameters, especially those used in the `<object>` tag, are properly validated and sanitized. This includes checks for type, format, and length.
+Ensure all input parameters, and properly validate and sanitize. This includes checks for type, format, and length.
 
 ### Sources
 
