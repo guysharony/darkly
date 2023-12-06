@@ -25,7 +25,7 @@ def try_authentication(wrong_request_length: int, username: str, password: str):
     url = f'http://{sys.argv[1]}/?{{}}'.format(encoded_params)
 
     response = requests.get(url)
-    success = len(response.text) != wrong_request_length
+    success = response.text.find('flag') != -1
     print(success)
 
     return success, response.text
