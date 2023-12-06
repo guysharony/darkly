@@ -11,6 +11,7 @@ Cross-Site Scripting (XSS) is a significant security vulnerability that occurs i
 
 2. **Initial Testing with HTML**: 
    - Input HTML code as part of the feedback. Observe whether the HTML is executed or if the tags are simply displayed as plain text.
+   `<h1>hello<\h1>` become `hello`
    - In this case, it is noted that the HTML is not disabled, and the HTML tags disappear from the input, indicating that they are processed in some manner.
 
 3. **Further Testing for Script Execution**: 
@@ -23,7 +24,7 @@ Cross-Site Scripting (XSS) is a significant security vulnerability that occurs i
 
 ### How to Fix
 
-Ensure all input parameters, especially those used in the `<object>` tag, are properly validated and sanitized. This includes checks for type, format, and length.
+Ensure all input parameters and properly validate and sanitize. This includes checks for type, format, and length.
 
 ### Sources
 
