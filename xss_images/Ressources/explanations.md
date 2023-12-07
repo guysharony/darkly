@@ -21,10 +21,10 @@ The `<object>` data tag in HTML is a versatile element used to embed different t
 
 5. **Realization of Base64 Encoding**:
    - Further research reveals that the `<object>` tag encodes received files in base64, a method often used for encoding binary data for transfer over text-based systems.
-     `base64(<script>alert("crazy XSS attack");</script>)` = `PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==`
+     `<script>alert("hello");</script>` = `PHNjcmlwdD5hbGVydCgiaGVsbG8iKTs8L3NjcmlwdD4=`
 
 6. **Encoding Attack Vector in Base64**:
-   - To exploit this vulnerability, the XSS attack code is converted into a base64 encoded string: `data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==`.
+   - To exploit this vulnerability, the XSS attack code is converted into a base64 encoded string: `data:text/html;base64,PHNjcmlwdD5hbGVydCgiaGVsbG8iKTs8L3NjcmlwdD4=`.
 
 ### How to Fix the Vulnerability
 
